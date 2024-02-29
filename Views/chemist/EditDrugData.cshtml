@@ -1,0 +1,155 @@
+﻿@model ClinicAutimation.Models.Drug
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>EditDrugData</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px; /* Increase font size */
+            background-color: #f9f9f9;
+        }
+
+        .form-horizontal {
+            width: 150%; /* Adjust width as needed */
+            margin: auto; /* Center horizontally */
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #fff;
+            text-align: center;
+        }
+
+        h4 {
+            font-size: 24px; /* Increase font size */
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px; /* Increase font size */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            font-size: 16px; /* Increase font size */
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            .btn:hover {
+                background-color: #0056b3;
+            }
+
+        /* Style for the Back to List link */
+        .back-link {
+            text-align: right;
+            margin-top: 20px;
+        }
+
+            .back-link a {
+                display: inline-block;
+                padding: 10px 20px;
+                font-size: 16px; /* Increase font size */
+                background-color: #6c757d; /* Gray color */
+                color: #fff;
+                text-decoration: none;
+                border-radius: 5px;
+                transition: background-color 0.3s ease;
+            }
+
+                .back-link a:hover {
+                    background-color: #495057; /* Darker gray color on hover */
+                }
+
+        .back-btn {
+            margin-left: 10px; /* Adjust margin as needed */
+        }
+    </style>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Drug</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.drugID)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.drugName,"Drug Name", htmlAttributes: new { @class = "control-label" })
+                <div>
+                    @Html.EditorFor(model => model.drugName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.drugName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.drugExpiry, "Drug Expiry", htmlAttributes: new { @class = "control-label" })
+                <div>
+                    @Html.EditorFor(model => model.drugExpiry, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.drugExpiry, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.drugDescription,"Drug Description", htmlAttributes: new { @class = "control-label" })
+                <div>
+                    @Html.EditorFor(model => model.drugDescription, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.drugDescription, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.drugDosage,"Drug Dosage", htmlAttributes: new { @class = "control-label" })
+                <div>
+                    @Html.EditorFor(model => model.drugDosage, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.drugDosage, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.drugPrice,"Drug Price", htmlAttributes: new { @class = "control-label" })
+                <div>
+                    @Html.EditorFor(model => model.drugPrice, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.drugPrice, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div>
+                    <input type="submit" value="Save" class="btn" />
+                    @Html.ActionLink("Back to List", "GetDrugList", null, new { @class = "btn back-btn" })
+                </div>
+            </div>
+        </div>
+    }
+</body>
+</html>

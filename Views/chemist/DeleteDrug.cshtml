@@ -1,0 +1,121 @@
+﻿@model ClinicAutimation.Models.Drug
+
+@{
+    ViewBag.Title = "DeleteDrug";
+}
+
+<style>
+    body, html {
+        height: 100%;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Poppins', sans-serif;
+        font-size: 18px; /* Increased font size */
+        background-color: #f9f9f9;
+    }
+
+    .container {
+        width: 100%;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        background-color: #fff;
+        text-align: center;
+        max-width: 600px; /* Adjust the maximum width as needed */
+    }
+
+    h2, h3, h4 {
+        font-size: 24px; /* Increased font size */
+    }
+
+    dl {
+        margin-top: 20px;
+    }
+
+    dt {
+        font-weight: bold;
+        margin-bottom: 10px; /* Add margin bottom for spacing */
+    }
+
+    dd {
+        margin-bottom: 20px; /* Add margin bottom for spacing */
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+        text-align: left;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        font-size: 18px; /* Increased font size */
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 18px; /* Increased font size */
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-danger {
+        background-color: #dc3545; /* Red color */
+        margin-left: 10px;
+    }
+
+        .btn:hover, .btn-danger:hover {
+            background-color: #0056b3; /* Darker color on hover */
+        }
+</style>
+
+<div class="container">
+    <h2>DeleteDrug</h2>
+    <h3>Are you sure you want to delete this?</h3>
+
+    <div>
+        <h4>Drug</h4>
+        <hr />
+        <dl class="dl-horizontal">
+
+            <dd>
+                @Html.DisplayFor(model => model.drugName)
+            </dd>
+
+            <dd>
+                @Html.DisplayFor(model => model.drugExpiry)
+            </dd>
+
+
+            <dd>
+                @Html.DisplayFor(model => model.drugDescription)
+            </dd>
+
+            <dd>
+                @Html.DisplayFor(model => model.drugDosage)
+            </dd>
+
+            <dd>
+                @Html.DisplayFor(model => model.drugPrice)
+            </dd>
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-danger" />
+                @Html.ActionLink("Back to List", "GetDrugList", null, new { @class = "btn btn-default" })
+            </div>
+        }
+    </div>
+</div>

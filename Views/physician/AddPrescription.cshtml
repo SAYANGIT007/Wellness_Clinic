@@ -1,0 +1,103 @@
+﻿@model ClinicAutimation.Models.PrescriptionViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Add Prescription</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+
+        .patient-details {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 0 auto;
+            max-width: 600px;
+            text-align: left;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 50%;
+            height:100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            button:hover {
+                background-color: #0056b3;
+            }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 18px; /* Increased font size */
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+            .button:hover {
+                background-color: #0056b3;
+            }
+    </style>
+</head>
+<body>
+    <h2>Add Prescription</h2>
+
+    <div class="patient-details">
+        <h3>Patient Details:</h3>
+        <p>Patient First Name: @Model.Patient.patientFirstName</p>
+        <p>Patient Last Name: @Model.Patient.patientLastName</p>
+        <p>Date of Birth: @Model.Patient.patientDOB.ToShortDateString()</p>
+        <p>Gender: @Model.Patient.patientGender</p>
+        <p>Contact: @Model.Patient.patientContact</p>
+        <p>Email: @Model.Patient.patientEmail</p>
+        <p>Address: @Model.Patient.patientAddress</p>
+        <p>Medical History: @Model.Patient.patientMedicalHistory</p>
+    </div>
+
+    <!-- Prescription form goes here -->
+
+   
+    <a href="@Url.Action("Save")" class="button">Add prescription</a>
+
+    
+
+</body>
+</html>

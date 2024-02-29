@@ -1,0 +1,89 @@
+﻿@model IEnumerable<CinicAutomation.Models.AppointmentModel>
+
+@{
+    ViewBag.Title = "GetDetailAppointment";
+}
+<nav class="navbar navbar-s-custom" style="background-color: #007bff;">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#" style="color: white;">WELLNESS CLINIC</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="#" style="color: white;">Home</a></li>
+            @*<li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color: white;">Page 1 <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#" style="color: white;">Page 1-1</a></li>
+                    <li><a href="#" style="color: white;">Page 1-2</a></li>
+                    <li><a href="#" style="color: white;">Page 1-3</a></li>
+                </ul>
+            </li>*@
+            <li><a href="@Url.Action("RegisterPhysician","admin")" style="color: white;">Register Physician</a></li>
+            <li><a href="@Url.Action("RegisterChemist","admin")" style="color: white;">Register Chemist</a></li>
+        </ul>
+    </div>
+</nav>
+
+<h2>Appointments</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.patient.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.physician.physicianName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AppDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AppCriticality)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AppReason)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AppStatus)
+        </th>
+        <th>
+       
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.patient.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.physician.physicianName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AppDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AppCriticality)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AppReason)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AppStatus)
+        </td>
+       
+
+
+        <td>
+            @**<a class="btn btn-sm btn-success" href="@Url.Action("ScheduleAppointment","admin", new { id=item.AppointmentModelID })">Schedule/Decline</a>*@
+            @Html.ActionLink("schedule", "ScheduleAppointment", new { id = item.AppointmentModelID })
+
+        </td>
+    </tr>
+}
+
+</table>

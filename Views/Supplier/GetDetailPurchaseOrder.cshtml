@@ -1,0 +1,133 @@
+﻿@model IEnumerable<ClinicAutimation.Models.PurchaseOrderViewModel>
+
+<style>
+    body, html {
+        height: 100%;
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+
+    .table {
+        font-size: 16px;
+        border-collapse: collapse;
+        width: 100%; /* Reduce the size of the table to fit the container */
+    }
+
+        .table th, .table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .table th {
+            background-color: #f2f2f2;
+        }
+
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+        color: white;
+        padding: 8px 12px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+    /* Style the dropdown */
+    .form-control {
+        width: 100%;
+        padding: 8px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    /* Add space between dropdown and validation message */
+    .text-danger {
+        margin-top: 5px;
+    }
+</style>
+
+<div class="container">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PurchaseOrderID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PurchaseQuantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PurchaseCompany)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PurchaseDrugID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PurchaseSupplierID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PurchaseOrderName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PurchaseOrderStatus)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PurchaseOrderID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PurchaseQuantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PurchaseCompany)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PurchaseDrugID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PurchaseSupplierID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PurchaseOrderName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PurchaseOrderStatus)
+
+                    @using (Html.BeginForm("GetDetailPurchaseOrder", "Supplier", method: FormMethod.Post, routeValues: new { id = item.PurchaseOrderID }))
+                    {
+                        <div class="form-group">
+                            
+                            @Html.DropDownList("selectedStatus", ViewBag.DefaultOptions as SelectList, item.PurchaseOrderStatus, new { @class = "form-control" })
+
+                            @Html.ValidationMessageFor(modelItem => item.PurchaseOrderStatus, "", new { @class = "text-danger" })
+                        </div>
+                        <button type="submit" value="update" class="btn btn-primary">Save Changes</button>
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+</div>

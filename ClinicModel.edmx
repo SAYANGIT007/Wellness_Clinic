@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="myclinicModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="appointment">
+          <Key>
+            <PropertyRef Name="A_pk_id" />
+          </Key>
+          <Property Name="A_pk_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="patient_fk_id" Type="int" Nullable="false" />
+          <Property Name="doctor_fk_id" Type="int" Nullable="false" />
+          <Property Name="A_datetime" Type="datetime" Nullable="false" />
+          <Property Name="A_criticality" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="A_reason" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="A_status" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="doctor">
+          <Key>
+            <PropertyRef Name="D_pk_id" />
+          </Key>
+          <Property Name="D_pk_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="D_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="D_gender" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="D_ph" Type="int" Nullable="false" />
+          <Property Name="D_email" Type="varchar" MaxLength="50" />
+          <Property Name="D_specialization" Type="varchar(max)" Nullable="false" />
+          <Property Name="D_address" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="patient">
+          <Key>
+            <PropertyRef Name="P_pk_id" />
+          </Key>
+          <Property Name="P_pk_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="P_name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="P_dob" Type="date" Nullable="false" />
+          <Property Name="P_gender" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="P_email" Type="varchar" MaxLength="50" />
+          <Property Name="P_ph" Type="int" Nullable="false" />
+          <Property Name="P_history" Type="varchar(max)" />
+          <Property Name="P_address" Type="varchar(max)" />
+        </EntityType>
+        <Association Name="FK__appointme__docto__5165187F">
+          <End Role="doctor" Type="Self.doctor" Multiplicity="1" />
+          <End Role="appointment" Type="Self.appointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="doctor">
+              <PropertyRef Name="D_pk_id" />
+            </Principal>
+            <Dependent Role="appointment">
+              <PropertyRef Name="doctor_fk_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__appointme__patie__52593CB8">
+          <End Role="patient" Type="Self.patient" Multiplicity="1" />
+          <End Role="appointment" Type="Self.appointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="patient">
+              <PropertyRef Name="P_pk_id" />
+            </Principal>
+            <Dependent Role="appointment">
+              <PropertyRef Name="patient_fk_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="myclinicModelStoreContainer">
+          <EntitySet Name="appointment" EntityType="Self.appointment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="doctor" EntityType="Self.doctor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="patient" EntityType="Self.patient" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__appointme__docto__5165187F" Association="Self.FK__appointme__docto__5165187F">
+            <End Role="doctor" EntitySet="doctor" />
+            <End Role="appointment" EntitySet="appointment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__appointme__patie__52593CB8" Association="Self.FK__appointme__patie__52593CB8">
+            <End Role="patient" EntitySet="patient" />
+            <End Role="appointment" EntitySet="appointment" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="myclinicModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="appointment">
+          <Key>
+            <PropertyRef Name="A_pk_id" />
+          </Key>
+          <Property Name="A_pk_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="patient_fk_id" Type="Int32" Nullable="false" />
+          <Property Name="doctor_fk_id" Type="Int32" Nullable="false" />
+          <Property Name="A_datetime" Type="DateTime" Nullable="false" />
+          <Property Name="A_criticality" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="A_reason" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="A_status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="doctor" Relationship="Self.FK__appointme__docto__5165187F" FromRole="appointment" ToRole="doctor" />
+          <NavigationProperty Name="patient" Relationship="Self.FK__appointme__patie__52593CB8" FromRole="appointment" ToRole="patient" />
+        </EntityType>
+        <EntityType Name="doctor">
+          <Key>
+            <PropertyRef Name="D_pk_id" />
+          </Key>
+          <Property Name="D_pk_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="D_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="D_gender" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="D_ph" Type="Int32" Nullable="false" />
+          <Property Name="D_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="D_specialization" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="D_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="appointments" Relationship="Self.FK__appointme__docto__5165187F" FromRole="doctor" ToRole="appointment" />
+        </EntityType>
+        <EntityType Name="patient">
+          <Key>
+            <PropertyRef Name="P_pk_id" />
+          </Key>
+          <Property Name="P_pk_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="P_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="P_dob" Type="DateTime" Nullable="false" />
+          <Property Name="P_gender" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="P_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="P_ph" Type="Int32" Nullable="false" />
+          <Property Name="P_history" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="P_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="appointments" Relationship="Self.FK__appointme__patie__52593CB8" FromRole="patient" ToRole="appointment" />
+        </EntityType>
+        <Association Name="FK__appointme__docto__5165187F">
+          <End Role="doctor" Type="Self.doctor" Multiplicity="1" />
+          <End Role="appointment" Type="Self.appointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="doctor">
+              <PropertyRef Name="D_pk_id" />
+            </Principal>
+            <Dependent Role="appointment">
+              <PropertyRef Name="doctor_fk_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__appointme__patie__52593CB8">
+          <End Role="patient" Type="Self.patient" Multiplicity="1" />
+          <End Role="appointment" Type="Self.appointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="patient">
+              <PropertyRef Name="P_pk_id" />
+            </Principal>
+            <Dependent Role="appointment">
+              <PropertyRef Name="patient_fk_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="myclinicEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="appointments" EntityType="Self.appointment" />
+          <EntitySet Name="doctors" EntityType="Self.doctor" />
+          <EntitySet Name="patients" EntityType="Self.patient" />
+          <AssociationSet Name="FK__appointme__docto__5165187F" Association="Self.FK__appointme__docto__5165187F">
+            <End Role="doctor" EntitySet="doctors" />
+            <End Role="appointment" EntitySet="appointments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__appointme__patie__52593CB8" Association="Self.FK__appointme__patie__52593CB8">
+            <End Role="patient" EntitySet="patients" />
+            <End Role="appointment" EntitySet="appointments" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="myclinicModelStoreContainer" CdmEntityContainer="myclinicEntities">
+          <EntitySetMapping Name="appointments">
+            <EntityTypeMapping TypeName="myclinicModel.appointment">
+              <MappingFragment StoreEntitySet="appointment">
+                <ScalarProperty Name="A_pk_id" ColumnName="A_pk_id" />
+                <ScalarProperty Name="patient_fk_id" ColumnName="patient_fk_id" />
+                <ScalarProperty Name="doctor_fk_id" ColumnName="doctor_fk_id" />
+                <ScalarProperty Name="A_datetime" ColumnName="A_datetime" />
+                <ScalarProperty Name="A_criticality" ColumnName="A_criticality" />
+                <ScalarProperty Name="A_reason" ColumnName="A_reason" />
+                <ScalarProperty Name="A_status" ColumnName="A_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="doctors">
+            <EntityTypeMapping TypeName="myclinicModel.doctor">
+              <MappingFragment StoreEntitySet="doctor">
+                <ScalarProperty Name="D_pk_id" ColumnName="D_pk_id" />
+                <ScalarProperty Name="D_name" ColumnName="D_name" />
+                <ScalarProperty Name="D_gender" ColumnName="D_gender" />
+                <ScalarProperty Name="D_ph" ColumnName="D_ph" />
+                <ScalarProperty Name="D_email" ColumnName="D_email" />
+                <ScalarProperty Name="D_specialization" ColumnName="D_specialization" />
+                <ScalarProperty Name="D_address" ColumnName="D_address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="patients">
+            <EntityTypeMapping TypeName="myclinicModel.patient">
+              <MappingFragment StoreEntitySet="patient">
+                <ScalarProperty Name="P_pk_id" ColumnName="P_pk_id" />
+                <ScalarProperty Name="P_name" ColumnName="P_name" />
+                <ScalarProperty Name="P_dob" ColumnName="P_dob" />
+                <ScalarProperty Name="P_gender" ColumnName="P_gender" />
+                <ScalarProperty Name="P_email" ColumnName="P_email" />
+                <ScalarProperty Name="P_ph" ColumnName="P_ph" />
+                <ScalarProperty Name="P_history" ColumnName="P_history" />
+                <ScalarProperty Name="P_address" ColumnName="P_address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

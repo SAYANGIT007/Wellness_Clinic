@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e52f93bedccb41748797686e1d286181" Name="Diagram1" ZoomLevel="75">
+        <EntityTypeShape EntityType="myclinicModel.patient" Width="1.5" PointX="6.5" PointY="12.875" />
+        <EntityTypeShape EntityType="myclinicModel.physician" Width="1.5" PointX="4" PointY="11.75" />
+        <EntityTypeShape EntityType="myclinicModel.prescription" Width="1.5" PointX="4.875" PointY="4.75" />
+        <EntityTypeShape EntityType="myclinicModel.schedule" Width="1.5" PointX="1" PointY="4.875" />
+        <EntityTypeShape EntityType="myclinicModel.appointment" Width="1.5" PointX="8.75" PointY="8.125" />
+        <AssociationConnector Association="myclinicModel.FK__appointme__patie__339FAB6E" />
+        <AssociationConnector Association="myclinicModel.FK__appointme__physi__2CF2ADDF" />
+        <AssociationConnector Association="myclinicModel.FK__appointme__presc__2057CCD0" />
+        <AssociationConnector Association="myclinicModel.FK__appointme__sched__1F63A897" />
+        <EntityTypeShape EntityType="myclinicModel.role" Width="1.5" PointX="1.625" PointY="10.625" />
+        <EntityTypeShape EntityType="myclinicModel.Admin" Width="1.5" PointX="9.375" PointY="16.75" />
+        <EntityTypeShape EntityType="myclinicModel.Chemist" Width="1.5" PointX="9.375" PointY="1.25" />
+        <EntityTypeShape EntityType="myclinicModel.Table" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="myclinicModel.tbl_login" Width="1.5" PointX="11.625" PointY="8.375" />
+        <AssociationConnector Association="myclinicModel.FK__tbl_login__admin__4E1E9780" />
+        <AssociationConnector Association="myclinicModel.FK__tbl_login__chemi__4D2A7347" />
+        <AssociationConnector Association="myclinicModel.FK__tbl_login__patie__4B422AD5" />
+        <AssociationConnector Association="myclinicModel.FK__tbl_login__physi__4C364F0E" />
+        <AssociationConnector Association="myclinicModel.FK__tbl_login__roleF__5006DFF2" />
+        <EntityTypeShape EntityType="myclinicModel.supplier" Width="1.5" PointX="0.75" PointY="0.875" />
+        <AssociationConnector Association="myclinicModel.FK__tbl_login__suppl__4F12BBB9" />
+        <EntityTypeShape EntityType="myclinicModel.Drug" Width="1.5" PointX="5.375" PointY="0.75" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

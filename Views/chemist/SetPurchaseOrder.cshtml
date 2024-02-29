@@ -1,0 +1,135 @@
+﻿@model ClinicAutimation.Models.PurchaseOrderViewModel
+
+@{
+    ViewBag.Title = "Create Purchase Order";
+}
+
+<style>
+    body, html {
+        height: 100%;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Poppins', sans-serif;
+        font-size: 18px; /* Increased font size */
+        background-color: #f9f9f9;
+    }
+
+    .form-container {
+        width: 50%; /* Adjust width as needed */
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        background-color: #fff;
+        text-align: center;
+    }
+
+    h4 {
+        font-size: 24px; /* Increased font size */
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+        text-align: left;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        font-size: 18px; /* Increased font size */
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 18px; /* Increased font size */
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+    .back-link {
+        margin-top: 10px;
+        display: block;
+        text-align: center;
+    }
+    .btn-back {
+        padding: 10px 20px;
+        font-size: 18px; /* Increased font size */
+        background-color: #6c757d; /* Gray color */
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-back:hover {
+            background-color: #5a6268; /* Darker gray color on hover */
+        }
+</style>
+
+<div class="form-container">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <h4>Purchase Order</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PurchaseQuantity,"Purchase Quantity", htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.PurchaseQuantity, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PurchaseQuantity, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PurchaseCompany,"Purchase Company", htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.PurchaseCompany, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PurchaseCompany, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PurchaseDrugID,"Purchase Drug ID", htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.PurchaseDrugID, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PurchaseDrugID, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PurchaseSupplierID,"Purchase Supplier ID", htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.PurchaseSupplierID, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PurchaseSupplierID, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PurchaseOrderName,"Purchase Order Name", htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.PurchaseOrderName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PurchaseOrderName, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PurchaseOrderStatus,"Purchase Order Status", htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.PurchaseOrderStatus, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PurchaseOrderStatus, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    }
+
+    <div class="back-link">
+        @Html.ActionLink("Back to List", "GetDrugList", null, new { @class = "btn btn-back" })
+    </div>
+</div>

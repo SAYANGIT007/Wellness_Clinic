@@ -1,0 +1,146 @@
+﻿@model IEnumerable<ClinicAutimation.Models.Drug>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>GetDrugList</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url('path_to_your_background_image.jpg'); /* Replace 'path_to_your_background_image.jpg' with the path to your background image */
+            background-size: cover;
+            background-position: center;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px; /* Reduced font size */
+        }
+
+        .container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .table-container {
+            margin-top: 20px;
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 1em; /* Reduced font size */
+            background-color: #fff;
+            border-radius: 5px;
+        }
+
+            .table th, .table td {
+                padding: 8px;
+                border-bottom: 1px solid #ddd;
+            }
+
+            .table th {
+                background-color: #f2f2f2;
+                color: #333;
+            }
+
+            .table td {
+                color: #666;
+            }
+
+            .table a {
+                text-decoration: none;
+                color: #007bff;
+            }
+
+                .table a:hover {
+                    text-decoration: underline;
+                }
+
+        .create-new-link {
+            margin-top: 20px;
+        }
+
+            .create-new-link a {
+                background-color: #007bff;
+                color: #fff;
+                padding: 10px 20px; /* Adjusted padding */
+                border: none;
+                border-radius: 5px;
+                font-size: 1em; /* Font size adjusted */
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+                text-decoration: none; /* Added */
+            }
+
+                .create-new-link a:hover {
+                    background-color: #0056b3;
+                }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="table-container">
+            <table class="table">
+                <tr>
+                    <th>
+                        <label>Drug Name</label>
+                    </th>
+                    <th>
+                        <label>Drug Expiry</label>
+                    </th>
+                    <th>
+                        <label>Drug Description</label>
+                    </th>
+                    <th>
+                        <label>Drug Dosage (in mg)</label>
+                    </th>
+                    <th>
+                        <label>Drug Price</label>
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.drugName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.drugExpiry)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.drugDescription)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.drugDosage)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.drugPrice)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "EditDrugData", new { id = item.drugID }) |
+                            @Html.ActionLink("Delete", "DeleteDrug", new { id = item.drugID })
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+        <div class="create-new-link">
+            @Html.ActionLink("Create New", "SetDrugData")
+        </div>
+    </div>
+</body>
+</html>

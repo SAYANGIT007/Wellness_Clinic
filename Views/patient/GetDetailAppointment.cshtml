@@ -1,0 +1,75 @@
+﻿@model IEnumerable<CinicAutomation.Models.AppointmentModel>
+
+@{
+    ViewBag.Title = "GetDetailAppointment";
+}
+
+<h2>GetDetailAppointment</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.patientFk)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.physicianFk)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AppDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AppCriticality)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AppReason)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AppStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.scheduleFk)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.prescriptionFk)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.patientFk)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.physicianFk)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AppDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AppCriticality)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AppReason)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AppStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.scheduleFk)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.prescriptionFk)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.AppointmentModelID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.AppointmentModelID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.AppointmentModelID })
+        </td>
+    </tr>
+}
+
+</table>

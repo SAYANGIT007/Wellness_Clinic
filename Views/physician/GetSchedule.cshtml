@@ -1,0 +1,66 @@
+﻿@model IEnumerable<CinicAutomation.Models.AppointmentModel>
+
+@{
+    ViewBag.Title = "GetSchedule";
+}
+
+<h2>Your Schedules</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.physician.physicianName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.patient.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.patient.gender)
+
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.patient.history)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.schedule.ScheduleDate)
+            
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.schedule.ScheduleTime)
+        </th>
+
+        
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.physician.physicianName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.patient.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.patient.gender)
+
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.patient.history)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.schedule.ScheduleDate)
+
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.schedule.ScheduleTime)
+        </th>
+
+    </tr>
+    }
+}
+
+</table>

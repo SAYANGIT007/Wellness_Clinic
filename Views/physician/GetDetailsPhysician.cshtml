@@ -1,0 +1,69 @@
+﻿@model IEnumerable<CinicAutomation.Models.PhysicianModel>
+
+@{
+    ViewBag.Title = "GetDetailsPhysician";
+}
+
+<h2>GetDetailsPhysician</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.physicianID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.physicianName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.physicianGender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.physicianEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.physicianSpecialization)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.physicianAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.physicianContact)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.physicianID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.physicianName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.physicianGender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.physicianEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.physicianSpecialization)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.physicianAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.physicianContact)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ })
+
+            </td>
+        </tr>
+    }
+
+    @Html.ActionLink("See Schedules", "GetSchedule", new { /* id=item.PrimaryKey */ })
+
+</table>

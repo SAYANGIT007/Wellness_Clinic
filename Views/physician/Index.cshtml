@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointments</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        h2 {
+            color: #333;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+            .button:hover {
+                background-color: #0056b3;
+            }
+
+        /* Search bar styles */
+        .search-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+            .search-container input[type=text] {
+                padding: 10px;
+                margin-top: 8px;
+                margin-bottom: 8px;
+                width: 50%;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+            }
+
+            .search-container button {
+                padding: 10px 20px;
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+                .search-container button:hover {
+                    background: #45a049;
+                }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Appointments</h2>
+
+        <!-- Search bar -->
+        <div class="search-container">
+            <input type="text" placeholder="Search...">
+            <button type="submit">Search</button>
+        </div>
+
+        <!-- Table to display existing appointments -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Appointment ID</th>
+                    <th>Patient ID</th>
+                    <th>Physician ID</th>
+                    <th>Date and Time</th>
+                    <th>Criticality</th>
+                    <th>Reason</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var appointment in Model)
+                {
+                    <tr>
+                        <td>@appointment.AppointmentID</td>
+                        <td>@appointment.PatientID</td>
+                        <td>@appointment.PhysicianID</td>
+                        <td>@appointment.AppointmentDateTime</td>
+                        <td>@appointment.Criticality</td>
+                        <td>@appointment.Reason</td>
+                        <td>@appointment.Status</td>
+                        <td>
+                            <!-- New cell for button -->
+                            <a href="@Url.Action("AddPrescription", "Doctor", new { id = appointment.AppointmentID })" class="button">View</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div>
+            <!-- Add a button to navigate back to the list -->
+            <a href="@Url.Action("Index")" class="button">Back to List</a>
+        </div>
+    </div>
+</body>
+</html>
